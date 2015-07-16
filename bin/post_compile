@@ -4,17 +4,18 @@ import yaml
 import subprocess
 import shlex
 import os
+import sys
 
-print os.listdir(os.getcwd())
+if not os.path.isfile('.travis.yml'):
+    sys.exit()
 
-with open(".travis.yml", 'r') as stream:
+with open('.travis.yml', 'r') as stream:
     travis_yml = yaml.load(stream)
     before_install = travis_yml['before_install']
 
     if type(before_install) is list:
 
         for command in before_install:
-            print command
             subprocess.call(shlex.split(command))
 
     elif type(before_install) is str:
