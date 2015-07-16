@@ -5,7 +5,8 @@ import subprocess
 import shlex
 import os
 
-with open("%s/.travis.yml" % os.environ['BUILD_DIR'], 'r') as stream:
+os.chdir(os.environ['BUILD_DIR'])
+with open(".travis.yml", 'r') as stream:
     travis_yml = yaml.load(stream)
     before_install = travis_yml['before_install']
     for command in before_install:
