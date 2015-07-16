@@ -6,6 +6,8 @@ import shlex
 import os
 import sys
 
+subprocess.call(['./manage.py', 'migrate'])
+
 if not os.path.isfile('.travis.yml'):
     sys.exit()
 
