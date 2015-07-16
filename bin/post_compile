@@ -10,6 +10,7 @@ print os.listdir(os.getcwd())
 with open(".travis.yml", 'r') as stream:
     travis_yml = yaml.load(stream)
     before_install = travis_yml['before_install']
+    print before_install
     for command in before_install:
         print command
         subprocess.call(shlex.split(command))
