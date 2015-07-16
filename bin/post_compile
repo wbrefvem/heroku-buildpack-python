@@ -18,7 +18,8 @@ if os.path.isfile('.travis.yml'):
                 subprocess.call(shlex.split(command))
 
         elif type(before_install) is str:
-            '    -----> Decrypting single command...'
+            '    -----> Running single command...'
             subprocess.call(shlex.split(before_install))
 
 subprocess.call(['./manage.py', 'migrate'])
+subprocess.call(['./manage.py', 'loaddata', 'status'])
