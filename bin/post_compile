@@ -5,7 +5,7 @@ import subprocess
 import shlex
 import os
 
-print os.listdir()
+print os.listdir(os.getcwd())
 
 with open(".travis.yml", 'r') as stream:
     travis_yml = yaml.load(stream)
