@@ -4,21 +4,19 @@ import yaml
 import subprocess
 import shlex
 import os
-import sys
-
-subprocess.call(['./manage.py', 'migrate'])
 
 if not os.path.isfile('.travis.yml'):
-    sys.exit()
 
-with open('.travis.yml', 'r') as stream:
-    travis_yml = yaml.load(stream)
-    before_install = travis_yml['before_install']
+    with open('.travis.yml', 'r') as stream:
+        travis_yml = yaml.load(stream)
+        before_install = travis_yml['before_install']
 
-    if type(before_install) is list:
+        if type(before_install) is list:
 
-        for command in before_install:
-            subprocess.call(shlex.split(command))
+            for command in before_install:
+                subprocess.call(shlex.split(command))
 
-    elif type(before_install) is str:
-        subprocess.call(shlex.split(before_install))
+        elif type(before_install) is str:
+            subprocess.call(shlex.split(before_install))
+
+subprocess.call(['./manage.py', 'migrate'])
