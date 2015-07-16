@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+
+import yaml
+import subprocess
+import shlex
+import os
+
+print os.environ['BUILD_DIR']
+
+# with open("%s/.travis.yml" % os.environ['BUILD_DIR'], 'r') as stream:
+#     travis_yml = yaml.load(stream)
+#     before_install = travis_yml['before_install']
+#     for command in before_install:
+#         subprocess.call(shlex.split(command))
