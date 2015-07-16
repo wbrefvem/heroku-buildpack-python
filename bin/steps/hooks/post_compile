@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-echo "-----> Possibly running post-compile hook..."
-if [ -f bin/post_compile ]; then
+
+if [ -f $BIN_DIR/post_compile ]; then
     echo "-----> Running post-compile hook"
     chmod +x bin/post_compile
     sub-env bin/post_compile
