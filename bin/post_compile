@@ -6,17 +6,19 @@ import shlex
 import os
 
 if not os.path.isfile('.travis.yml'):
+    print '-----> Opening .travis.yml...'
 
     with open('.travis.yml', 'r') as stream:
         travis_yml = yaml.load(stream)
         before_install = travis_yml['before_install']
 
         if type(before_install) is list:
-
+            '    -----> Running through command list...'
             for command in before_install:
                 subprocess.call(shlex.split(command))
 
         elif type(before_install) is str:
+            '    -----> Decrypting secrets...'
             subprocess.call(shlex.split(before_install))
 
 subprocess.call(['./manage.py', 'migrate'])
