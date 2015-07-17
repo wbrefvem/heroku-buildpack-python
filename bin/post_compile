@@ -14,9 +14,7 @@ if os.path.isfile('.travis.yml'):
 
         if type(before_install) is list:
             for command in before_install:
-                print '    -----> %s' % command
                 subprocess.call(shlex.split(command))
 
         elif type(before_install) is str:
-            print '    -----> %s' % before_install
             subprocess.call(shlex.split(before_install))
