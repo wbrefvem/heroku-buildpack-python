@@ -17,4 +17,7 @@ if os.path.isfile('.travis.yml'):
                 subprocess.call(shlex.split(command))
 
         elif type(before_install) is str:
-            subprocess.call(shlex.split(before_install))
+            command = shlex.split(before_install)
+            command = [v.replace('$DJANGO_KEY', os.eviron['DJANGO_KEY']) for v in command]
+            command = [v.replace('$DJANGO_IV', os.eviron['DJANGO_IV']) for v in command]
+            subprocess.call(command)
