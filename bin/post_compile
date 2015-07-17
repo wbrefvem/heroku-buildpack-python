@@ -13,13 +13,10 @@ if os.path.isfile('.travis.yml'):
         before_install = travis_yml['before_install']
 
         if type(before_install) is list:
-            print '    -----> Running through command list...'
             for command in before_install:
+                print '    -----> %s' % command
                 subprocess.call(shlex.split(command))
 
         elif type(before_install) is str:
-            print '    -----> Running single command...'
+            print '    -----> %s' % before_install
             subprocess.call(shlex.split(before_install))
-
-subprocess.call(['./manage.py', 'migrate'])
-subprocess.call(['./manage.py', 'loaddata', 'status'])
