@@ -1,23 +1,23 @@
 #!/usr/bin/env python
 
-import yaml
-import subprocess
-import shlex
-import os
+# import yaml
+# import subprocess
+# import shlex
+# import os
 
-if os.path.isfile('.travis.yml'):
-    print '-----> Opening .travis.yml...'
+# if os.path.isfile('.travis.yml'):
+#     print '-----> Opening .travis.yml...'
 
-    with open('.travis.yml', 'r') as stream:
-        travis_yml = yaml.load(stream)
-        before_install = travis_yml['before_install']
+#     with open('.travis.yml', 'r') as stream:
+#         travis_yml = yaml.load(stream)
+#         before_install = travis_yml['before_install']
 
-        if type(before_install) is list:
-            for command in before_install:
-                subprocess.call(shlex.split(command))
+#         if type(before_install) is list:
+#             for command in before_install:
+#                 subprocess.call(shlex.split(command))
 
-        elif type(before_install) is str:
-            command = shlex.split(before_install)
-            command = [v.replace('$DJANGO_KEY', os.environ['DJANGO_KEY']) for v in command]
-            command = [v.replace('$DJANGO_IV', os.environ['DJANGO_IV']) for v in command]
-            subprocess.call(command)
+#         elif type(before_install) is str:
+#             command = shlex.split(before_install)
+#             command = [v.replace('$DJANGO_KEY', os.environ['DJANGO_KEY']) for v in command]
+#             command = [v.replace('$DJANGO_IV', os.environ['DJANGO_IV']) for v in command]
+#             subprocess.call(command)
